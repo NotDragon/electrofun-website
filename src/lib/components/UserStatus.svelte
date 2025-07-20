@@ -11,7 +11,7 @@
 		faUser
 	} from '@fortawesome/free-solid-svg-icons';
 
-    import { colorPalletteLight } from '$lib/colors';
+    import { getCurrentTheme, getColors } from '$lib/colors';
 
 	let showMenu = $state(false);
 
@@ -68,9 +68,9 @@
 					<FontAwesomeIcon icon={faGear} /> Settings
 				</div>
 
-				{#if role === 'super_admin'}
-					<div class="dropdown-item" onclick={() => goto('/admin/console')}>
-						<FontAwesomeIcon icon={faTerminal} /> Admin Console
+				{#if role === 'admin'}
+					<div class="dropdown-item" onclick={() => goto('/admin')}>
+						<FontAwesomeIcon icon={faTerminal} /> Admin Dashboard
 					</div>
 				{/if}
 
@@ -86,7 +86,6 @@
 		<button
 			onclick={login}
 			class="login-button"
-			style="background: {colorPalletteLight.primary}"
 		>
 			Log in
 		</button>
@@ -103,7 +102,7 @@
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		border: 1px solid #ccc;
+		border: 1px solid var(--border);
 		cursor: pointer;
 		object-fit: cover;
 	}
@@ -111,8 +110,8 @@
 	.login-button {
 		padding: 6px 12px;
 		font-size: 14px;
-		background-color: #eee;
-		border: 1px solid #bbb;
+		background-color: var(--primary-color);
+		border: 1px solid var(--border);
 		border-radius: 4px;
 		cursor: pointer;
 		border: none;
@@ -125,14 +124,15 @@
 		position: absolute;
 		top: 45px;
 		right: 0;
-		background-color: #001021;
+		background-color: var(--surface);
 		border-radius: 7px;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 		z-index: 100;
 		width: 15vw;
 		padding-top: 4px;
-		color: white;
+		color: var(--text);
 		font-size: 1rem;
+		border: 1px solid var(--border);
 	}
 
 	.user-name {
@@ -151,7 +151,7 @@
 	}
 
 	.dropdown-item:hover {
-		background-color: white;
-		color: black;
+		background-color: var(--secondary-background);
+		color: var(--text);
 	}
 </style>

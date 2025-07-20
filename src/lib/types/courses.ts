@@ -91,3 +91,54 @@ export interface Kit {
     content: any;
     order: number;
   }
+
+  // New types for QR codes and purchases
+  export interface KitCode {
+    id: string;
+    kit_id: string;
+    code: string; // QR code content or unique access code
+    code_type: 'qr' | 'access_code';
+    is_used: boolean;
+    used_by?: string; // user_id who used this code
+    used_at?: string;
+    created_at: string;
+    expires_at?: string;
+  }
+
+  export interface Purchase {
+    id: string;
+    user_id: string;
+    kit_id: string;
+    amount: number;
+    currency: string;
+    payment_method: 'stripe' | 'code_redemption' | 'admin_grant';
+    payment_status: 'pending' | 'completed' | 'failed' | 'refunded';
+    stripe_payment_intent_id?: string;
+    kit_code_id?: string; // if purchased via code redemption
+    created_at: string;
+    completed_at?: string;
+  }
+
+  export interface EmailTemplate {
+    id: string;
+    name: string;
+    subject: string;
+    html_content: string;
+    text_content: string;
+    variables: string[]; // array of variable names that can be replaced
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface EmailLog {
+    id: string;
+    user_id: string;
+    template_id: string;
+    to_email: string;
+    subject: string;
+    content: string;
+    status: 'sent' | 'failed' | 'pending';
+    sent_at?: string;
+    error_message?: string;
+    created_at: string;
+  }

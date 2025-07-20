@@ -4,7 +4,10 @@
   import type { Kit, OfficialCourse, CustomCourse } from '$lib/types/courses';
   
   const { data } = $props();
-  const { kits, officialCourses, customCourses, selectedKit, error } = data;
+  const { kits, officialCourses, customCourses, selectedKit, userKits, error } = data;
+  
+  // Ensure userKits is typed as string array
+  const userKitIds: string[] = userKits || [];
   
   function filterByKit(kitId: string | null) {
     const url = new URL(window.location.href);
@@ -22,6 +25,12 @@
   
   {#if error}
     <div class="error">{error}</div>
+  {:else if userKitIds.length === 0}
+    <div class="no-access">
+      <h2>No Kit Access</h2>
+      <p>You need to purchase a kit to access courses. Visit our shop to get started!</p>
+      <a href="/shop" class="button">Go to Shop</a>
+    </div>
   {:else}
     <!-- Kit Filter -->
     <div class="kit-filter">
@@ -33,13 +42,15 @@
         All Kits
       </button>
       {#each kits as kit}
-        <button 
-          class="filter-btn" 
-          class:active={selectedKit === kit.id}
-          on:click={() => filterByKit(kit.id)}
-        >
-          {kit.name} (Level {kit.level})
-        </button>
+        {#if userKitIds.includes(kit.id)}
+          <button 
+            class="filter-btn" 
+            class:active={selectedKit === kit.id}
+            on:click={() => filterByKit(kit.id)}
+          >
+            {kit.name} (Level {kit.level})
+          </button>
+        {/if}
       {/each}
     </div>
     
@@ -71,6 +82,10 @@
     <!-- Custom Courses -->
     <section class="courses-section">
       <h2>Community Courses</h2>
+      <p class="section-description">
+        Discover courses created by the Electrofun community. 
+        <a href="/shop">Browse more community courses in our shop</a>.
+      </p>
       {#if customCourses.length === 0}
         <p class="no-courses">No community courses available for the selected kit.</p>
       {:else}
@@ -87,7 +102,7 @@
                   <span class="price free">Free</span>
                 {/if}
               </div>
-              <a href="/courses/custom/{course.id}" class="button">View Course</a>
+              <a href="/courses/community/{course.id}" class="button">View Course</a>
             </div>
           {/each}
         </div>
@@ -112,17 +127,17 @@
   
   .filter-btn {
     padding: 8px 16px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-primary);
     border-radius: 20px;
-    background: white;
+    background: var(--bg-card);
     cursor: pointer;
     transition: all 0.3s;
   }
   
   .filter-btn.active {
-    background: #e96b00;
-    color: white;
-    border-color: #e96b00;
+    background: var(--brand-primary);
+    color: var(--text-inverse);
+    border-color: var(--brand-primary);
   }
   
   .courses-section {
@@ -130,15 +145,48 @@
   }
   
   .courses-section h2 {
-    color: #e96b00;
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+  }
+  
+  .section-description {
+    color: var(--text-secondary);
     margin-bottom: 1.5rem;
+  }
+  
+  .section-description a {
+    color: var(--brand-primary);
+    text-decoration: none;
+  }
+  
+  .section-description a:hover {
+    text-decoration: underline;
   }
   
   .no-courses {
     text-align: center;
-    color: #666;
+    color: var(--text-secondary);
     font-style: italic;
     padding: 2rem;
+  }
+  
+  .no-access {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+  
+  .no-access h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+  
+  .no-access p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
   }
   
   .courses-grid {
@@ -148,31 +196,31 @@
   }
   
   .course-card {
-    border: 1px solid #eee;
+    border: 1px solid var(--border-primary);
     border-radius: 8px;
     padding: 1.5rem;
     transition: all 0.3s;
   }
   
   .course-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-md);
   }
   
   .course-card.official {
-    border-left: 4px solid #e96b00;
+    border-left: 4px solid var(--brand-primary);
   }
   
   .course-card.custom {
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid var(--success-500);
   }
   
   .course-card h3 {
     margin: 0 0 1rem 0;
-    color: #333;
+    color: var(--text-primary);
   }
   
   .course-card p {
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 1rem;
     line-height: 1.5;
   }
@@ -187,39 +235,39 @@
   }
   
   .theme, .level, .duration, .creator {
-    background: #f5f5f5;
+    background: var(--bg-tertiary);
     padding: 2px 8px;
     border-radius: 12px;
   }
   
   .price {
     font-weight: bold;
-    color: #e96b00;
+    color: var(--brand-primary);
   }
   
   .price.free {
-    color: #4CAF50;
+    color: var(--success-500);
   }
   
   .button {
     display: inline-block;
     padding: 8px 16px;
-    background: #e96b00;
-    color: white;
+    background: var(--brand-primary);
+    color: var(--text-inverse);
     text-decoration: none;
     border-radius: 4px;
     transition: background 0.3s;
   }
   
   .button:hover {
-    background: #d55f00;
+    background: var(--primary-600);
   }
   
   .error {
     text-align: center;
     padding: 2rem;
-    color: #f44336;
-    background: #ffebee;
+    color: var(--error-600);
+    background: var(--error-50);
     border-radius: 4px;
   }
 </style>

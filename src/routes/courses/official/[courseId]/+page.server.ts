@@ -21,6 +21,33 @@ export const load: PageServerLoad = async ({ params, locals }) => {
       };
     }
 
+    // Check if user has access to the kit
+    if (!user) {
+      return {
+        course: null,
+        lessons: [],
+        userProgress: [],
+        error: 'Please log in to access this course'
+      };
+    }
+
+    const { data: userPermissions } = await supabase
+      .from('user_permissions')
+      .select('*')
+      .eq('user_id', user.id)
+      .eq('kit_id', course.kit_id)
+      .eq('permission_type', 'course_access')
+      .single();
+
+    if (!userPermissions) {
+      return {
+        course: null,
+        lessons: [],
+        userProgress: [],
+        error: 'You need to purchase the required kit to access this course'
+      };
+    }
+
     // Load lessons
     const { data: lessons, error: lessonsError } = await supabase
       .from('lessons')

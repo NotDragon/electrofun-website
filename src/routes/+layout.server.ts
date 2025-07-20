@@ -5,11 +5,13 @@ export const load: LayoutServerLoad = async ({ params, locals }) => {
     const { data: profile, error } = await locals.supabase.from('profiles')
         .select('*')
         .eq('id', user?.id)
-        .single()
+        .single();
 
+    const isAdmin = profile?.role === 'admin';
 
 	return {
         user,
-        profile
+        profile,
+        isAdmin,
     }
 };

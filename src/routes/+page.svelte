@@ -9,7 +9,7 @@
 			Spark Curiosity. Build the Future.<br />
 			Hands-on electronics kits with interactive lessons — built for education and exploration.
 		</p>
-		<a href="/kits" class="button">Explore Kits</a>
+		<a href="/shop" class="button">Explore Kits</a>
 	</div>
 </main>
 
@@ -62,25 +62,25 @@
 
 <style>
 	main.hero {
-		background: linear-gradient(to bottom right, #ffe8c4, #fff8e6);
+		background: linear-gradient(to bottom right, var(--primary-light), var(--primary-color));
 		padding: 6rem 2rem;
 		text-align: center;
 	}
 	.hero-content h1 {
 		font-size: 3rem;
-		color: #e96b00;
+		color: var(--primary-color);
 		margin-bottom: 1rem;
 	}
 	.hero-content p {
 		font-size: 1.2rem;
-		color: #333;
+		color: var(--text);
 		margin-bottom: 2rem;
 		max-width: 600px;
 		margin-left: auto;
 		margin-right: auto;
 	}
 	.button {
-		background-color: #e96b00;
+		background-color: var(--primary-color);
 		color: white;
 		padding: 0.75rem 1.5rem;
 		border-radius: 25px;
@@ -89,7 +89,7 @@
 		transition: background 0.3s;
 	}
 	.button:hover {
-		background-color: #d55f00;
+		background-color: var(--primary-dark);
 	}
 
 	section.steps {
@@ -97,27 +97,27 @@
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 2rem;
 		padding: 4rem 2rem;
-		background: white;
+		background: var(--background);
 		text-align: center;
 	}
 	.step h3 {
 		margin-bottom: 0.5rem;
 		font-size: 1.2rem;
-		color: #444;
+		color: var(--text);
 	}
 	.step p {
 		font-size: 0.95rem;
-		color: #666;
+		color: var(--muted);
 	}
 
 	section.themes {
-		background: #f7f7f7;
+		background: var(--secondary-background);
 		padding: 4rem 2rem;
 		text-align: center;
 	}
 	.themes h2 {
 		font-size: 2rem;
-		color: #e96b00;
+		color: var(--primary-color);
 		margin-bottom: 2rem;
 	}
 	.theme-grid {
@@ -126,45 +126,46 @@
 		gap: 1.5rem;
 	}
 	.theme-card {
-		background: white;
+		background: var(--surface);
 		padding: 1.5rem;
 		border-radius: 12px;
-		box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	}
 	.theme-card h3 {
 		margin-bottom: 0.5rem;
-		color: #333;
+		color: var(--text);
 	}
 	.theme-card p {
-		color: #555;
+		color: var(--muted);
 		font-size: 0.95rem;
 	}
 
 	section.schools {
-		background: #ffe7c3;
+		background: var(--accent);
 		padding: 4rem 2rem;
 		text-align: center;
 	}
 	.schools h2 {
 		font-size: 1.75rem;
 		margin-bottom: 1rem;
-		color: #333;
+		color: var(--text);
 	}
 	.schools p {
 		font-size: 1rem;
-		color: #444;
+		color: var(--muted);
 		margin-bottom: 1.5rem;
 	}
 	.button.dark {
-		background-color: #333;
+		background-color: var(--text);
+		color: var(--accent);
 	}
 	.button.dark:hover {
-		background-color: #111;
+		background-color: var(--muted);
 	}
 
 	footer {
-		background: #222;
-		color: #ccc;
+		background: var(--text);
+		color: var(--background);
 		text-align: center;
 		padding: 2rem 1rem;
 		font-size: 0.9rem;
