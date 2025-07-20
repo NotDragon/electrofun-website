@@ -61,113 +61,112 @@
 </footer>
 
 <style>
-/* Layout */
-main.hero {
-	background: linear-gradient(to bottom right, #ffe8c4, #fff8e6);
-	padding: 6rem 2rem;
-	text-align: center;
-}
-.hero-content h1 {
-	font-size: 3rem;
-	color: #e96b00;
-	margin-bottom: 1rem;
-}
-.hero-content p {
-	font-size: 1.2rem;
-	color: #333;
-	margin-bottom: 2rem;
-	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
-}
-.button {
-	background-color: #e96b00;
-	color: white;
-	padding: 0.75rem 1.5rem;
-	border-radius: 25px;
-	text-decoration: none;
-	font-weight: bold;
-	transition: background 0.3s;
-}
-.button:hover {
-	background-color: #d55f00;
-}
+	main.hero {
+		background: linear-gradient(to bottom right, #ffe8c4, #fff8e6);
+		padding: 6rem 2rem;
+		text-align: center;
+	}
+	.hero-content h1 {
+		font-size: 3rem;
+		color: #e96b00;
+		margin-bottom: 1rem;
+	}
+	.hero-content p {
+		font-size: 1.2rem;
+		color: #333;
+		margin-bottom: 2rem;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.button {
+		background-color: #e96b00;
+		color: white;
+		padding: 0.75rem 1.5rem;
+		border-radius: 25px;
+		text-decoration: none;
+		font-weight: bold;
+		transition: background 0.3s;
+	}
+	.button:hover {
+		background-color: #d55f00;
+	}
 
-section.steps {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	gap: 2rem;
-	padding: 4rem 2rem;
-	background: white;
-	text-align: center;
-}
-.step h3 {
-	margin-bottom: 0.5rem;
-	font-size: 1.2rem;
-	color: #444;
-}
-.step p {
-	font-size: 0.95rem;
-	color: #666;
-}
+	section.steps {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 2rem;
+		padding: 4rem 2rem;
+		background: white;
+		text-align: center;
+	}
+	.step h3 {
+		margin-bottom: 0.5rem;
+		font-size: 1.2rem;
+		color: #444;
+	}
+	.step p {
+		font-size: 0.95rem;
+		color: #666;
+	}
 
-section.themes {
-	background: #f7f7f7;
-	padding: 4rem 2rem;
-	text-align: center;
-}
-.themes h2 {
-	font-size: 2rem;
-	color: #e96b00;
-	margin-bottom: 2rem;
-}
-.theme-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-	gap: 1.5rem;
-}
-.theme-card {
-	background: white;
-	padding: 1.5rem;
-	border-radius: 12px;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-}
-.theme-card h3 {
-	margin-bottom: 0.5rem;
-	color: #333;
-}
-.theme-card p {
-	color: #555;
-	font-size: 0.95rem;
-}
+	section.themes {
+		background: #f7f7f7;
+		padding: 4rem 2rem;
+		text-align: center;
+	}
+	.themes h2 {
+		font-size: 2rem;
+		color: #e96b00;
+		margin-bottom: 2rem;
+	}
+	.theme-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+	.theme-card {
+		background: white;
+		padding: 1.5rem;
+		border-radius: 12px;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+	}
+	.theme-card h3 {
+		margin-bottom: 0.5rem;
+		color: #333;
+	}
+	.theme-card p {
+		color: #555;
+		font-size: 0.95rem;
+	}
 
-section.schools {
-	background: #ffe7c3;
-	padding: 4rem 2rem;
-	text-align: center;
-}
-.schools h2 {
-	font-size: 1.75rem;
-	margin-bottom: 1rem;
-	color: #333;
-}
-.schools p {
-	font-size: 1rem;
-	color: #444;
-	margin-bottom: 1.5rem;
-}
-.button.dark {
-	background-color: #333;
-}
-.button.dark:hover {
-	background-color: #111;
-}
+	section.schools {
+		background: #ffe7c3;
+		padding: 4rem 2rem;
+		text-align: center;
+	}
+	.schools h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1rem;
+		color: #333;
+	}
+	.schools p {
+		font-size: 1rem;
+		color: #444;
+		margin-bottom: 1.5rem;
+	}
+	.button.dark {
+		background-color: #333;
+	}
+	.button.dark:hover {
+		background-color: #111;
+	}
 
-footer {
-	background: #222;
-	color: #ccc;
-	text-align: center;
-	padding: 2rem 1rem;
-	font-size: 0.9rem;
-}
+	footer {
+		background: #222;
+		color: #ccc;
+		text-align: center;
+		padding: 2rem 1rem;
+		font-size: 0.9rem;
+	}
 </style>
