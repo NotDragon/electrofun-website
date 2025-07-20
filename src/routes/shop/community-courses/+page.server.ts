@@ -1,19 +1,27 @@
 import type { PageServerLoad, Actions } from './$types';
-import { emailService } from '$lib/services/emailService';
 
 export const load: PageServerLoad = async ({ locals }) => {
   const { user, supabase } = locals;
   
   try {
-    // Load all kits
-    const { data: kits, error: kitsError } = await supabase
-      .from('kits')
-      .select('*')
-      .order('level', { ascending: true });
+    // Load community courses that are available for purchase
+    const { data: communityCourses, error: coursesError } = await supabase
+      .from('custom_courses')
+      .select(`
+        *,
+        kits:kit_id (
+          id,
+          name,
+          theme,
+          level,
+          image_url
+        )
+      `)
+      .eq('is_published', true)
+      .eq('is_public', true)
+      .order('created_at', { ascending: false });
     
-    if (kitsError) throw kitsError;
-
-
+    if (coursesError) throw coursesError;
 
     // Load user's purchased kits if logged in
     let userKits: string[] = [];
@@ -28,17 +36,17 @@ export const load: PageServerLoad = async ({ locals }) => {
     }
 
     return {
-      kits: kits || [],
+      communityCourses: communityCourses || [],
       userKits,
       error: null
     };
 
   } catch (error) {
-    console.error('Failed to load shop data:', error);
+    console.error('Failed to load community courses:', error);
     return {
-      kits: [],
+      communityCourses: [],
       userKits: [],
-      error: 'Failed to load shop data'
+      error: 'Failed to load community courses'
     };
   }
 };
@@ -92,24 +100,6 @@ export const actions: Actions = {
       if (purchaseError) {
         console.error('Failed to record purchase:', purchaseError);
         // Don't fail the purchase if recording fails
-      }
-
-      // Send email confirmation
-      if (purchase) {
-        const { data: kit } = await supabase
-          .from('kits')
-          .select('*')
-          .eq('id', kitId)
-          .single();
-
-        if (kit) {
-          await emailService.sendPurchaseConfirmation(
-            purchase,
-            kit,
-            user.email || '',
-            user.user_metadata?.full_name || user.email || 'User'
-          );
-        }
       }
 
       return { success: true, message: 'Kit purchased successfully!' };

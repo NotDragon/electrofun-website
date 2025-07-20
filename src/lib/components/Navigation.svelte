@@ -19,7 +19,7 @@
       <a href="/" class="nav-link" class:active={currentPath === '/'}>
         Home
       </a>
-      <a href="/shop" class="nav-link" class:active={currentPath === '/shop'}>
+      <a href="/shop" class="nav-link" class:active={currentPath === '/shop' || currentPath.startsWith('/shop/')}>
         Shop
       </a>
       <a href="/redeem" class="nav-link" class:active={currentPath === '/redeem'}>

@@ -10,6 +10,10 @@ export interface Kit {
     kit_type: 'normal' | 'organization';
     price: number;
     premium_upgrade_price?: number;
+    image_url?: string;
+    images?: string[];
+    features?: string[];
+    specifications?: Record<string, string>;
     created_at: string;
     updated_at: string;
   }

@@ -1,4 +1,3 @@
-// src/routes/courses/+page.svelte
 <script lang="ts">
   import { goto } from '$app/navigation';
   import type { Kit, OfficialCourse, CustomCourse } from '$lib/types/courses';
